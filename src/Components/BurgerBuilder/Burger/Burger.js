@@ -1,13 +1,28 @@
 import React from 'react';
 import Ingredient from '../Ingredient/Ingredient';
+import './Burger.css';
 
 const Burger = props => {
+    let ingredientArr = props.ingredients.map(item => {
+        let amountArr = [...Array(item.amount).keys()];
+        //console.log(amountArr)
+        return amountArr.map( _ => {
+            return <Ingredient type={item.type} key={Math.random} />
+        })
+    })
+    //console.log(ingredientArr);
+        .reduce((arr, element) => {
+            return arr.concat(element);
+        }, []);
+    //console.log(ingredientArr)
+
+    if(ingredientArr.length === 0) {
+        ingredientArr = <p>Please add some ingredients!</p>
+    }
     return (
-        <div>
+        <div className="Burger">
             <Ingredient type="bread-top" />
-            <Ingredient type="salad" />
-            <Ingredient type="cheese" />
-            <Ingredient type="meat" />
+            {ingredientArr}
             <Ingredient type="bread-bottom" />
         </div>
     )
