@@ -4,7 +4,6 @@ import Controls from './Controls/Controls';
 import Summary from './Summary/Summary';
 import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from 'reactstrap';
 
-
 const INGREDIENT_PRICES = {
     salad: 20,
     cheese: 40,
@@ -65,6 +64,14 @@ export default class BurgerBuilder extends Component {
         })
     }
 
+    handleCheckout = () => {
+        this.props.history.push("/checkout")
+    }
+
+    // componentDidMount() {
+    //     // console.log(this.props)
+    // }
+
     render () {
         return (
             <div>
@@ -85,7 +92,7 @@ export default class BurgerBuilder extends Component {
                         <Summary ingredients={this.state.ingredients} />
                      </ModalBody>
                      <ModalFooter>
-                         <Button color="success" ocClick={this.toggleModal}>Continue To Checkout</Button>
+                         <Button color="success" onClick={this.handleCheckout}>Continue To Checkout</Button>
                          <Button color="secondary" onClick={this.toggleModal}>Cancel</Button>
                      </ModalFooter>
                  </Modal>
